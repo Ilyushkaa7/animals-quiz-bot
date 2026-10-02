@@ -1,48 +1,51 @@
-🐾 Animals Quiz Bot  
-Telegram-бот с викториной про животных.
+# Animals Quiz Bot
 
-Описание  
-Учебный проект на Python с использованием aiogram.  
-Бот отправляет вопросы и предлагает пользователю угадывать животных по описанию или фактам.
+A learning project built with Python and aiogram: a Telegram quiz with animal clues, multiple-choice answers, hints, lives and scores.
 
-Функционал  
-- Викторина с вопросами про животных  
-- Несколько вариантов ответа  
-- Проверка правильного ответа  
-- Простая навигация через кнопки  
-- Интерактивное взаимодействие с пользователем  
+## Features
 
-Типы вопросов  
-- Угадай животное по описанию  
-- Интересные факты  
-- Простые обучающие вопросы  
+- Random animal facts
+- Three clues and multiple-choice answers
+- Lives, scores and a letter-reveal hint
+- Inline navigation
+- Local JSON persistence
 
-Стек  
-- Python  
-- aiogram  
-- python-dotenv  
+## Run locally
 
-Структура проекта  
-- app/handlers.py — логика бота  
-- app/data/ — вопросы и данные  
-- main.py — точка входа  
-- .env — токен бота  
+```sh
+git clone https://github.com/Ilyushkaa7/animals-quiz-bot.git
+cd animals-quiz-bot
+python -m venv .venv
+```
 
-Запуск  
-1. Клонировать репозиторий  
-   git clone https://github.com/Ilyushkaa7/animalsbot.git  
+Activate the environment (`.venv\Scripts\activate` on Windows or `source .venv/bin/activate` on Linux/macOS), then install dependencies:
 
-2. Перейти в папку проекта  
-   cd animalsbot  
+```sh
+python -m pip install -r requirements.txt
+```
 
-3. Установить зависимости  
-   pip install -r requirements.txt  
+Create a local `.env` file:
 
-4. Создать файл .env  
-   BOT_TOKEN=your_token  
+```dotenv
+BOT_TOKEN=your_telegram_bot_token
+```
 
-5. Запустить бота  
-   python main.py  
+Start the bot:
 
-Примечание  
-Проект создан в учебных целях для практики разработки Telegram-ботов на aiogram.
+```sh
+python animal_bot.py
+```
+
+The bot needs a Telegram bot token and an internet connection. Keep `.env` and `users.json` out of Git; both are ignored.
+
+## Structure
+
+- `animal_bot.py` — handlers and polling entry point
+- `animals_data.py` — animals and clues
+- `keyboards.py` — reply and inline keyboards
+- `database.py` — local JSON state
+- `requirements.txt` — dependencies
+
+## Limitations
+
+This is an educational prototype. The JSON store rewrites the whole file on updates and is not designed for multiple bot processes. SQLite storage, stale-button handling and automated tests are possible next steps.
